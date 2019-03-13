@@ -1,0 +1,37 @@
+body {
+  font-family: sans-serif;
+}
+
+button {
+  box-sizing: border-box;
+}
+button[id^="location"] {
+  background: #555;
+  width: 40px;
+  height: 40px;
+  display: inline-block;
+  border: 3px solid #555;
+  border-radius: 50%;
+  margin: 10px;
+  outline: none;
+}
+button[id^="location"].highlight {
+  border-color: #6b6;
+}
+
+button[id^="location"] + div {
+  position: absolute;
+  top: calc(50vh - 50px);
+  left: calc(50vw - 100px);
+  box-sizing: border-box;
+  height: 0px;
+  width: 200px;
+  padding: 4px;
+  opacity: 0;
+  transition: all 0.5s;
+}
+button[id^="location"].showtext + div {
+  min-height: 100px;
+  opacity: 1;
+  background: #ddd;
+}

@@ -1,47 +1,29 @@
-
 "use strict";
 
-const [...elArray] = document.querySelectorAll('[id^="location"]');
+const buttons = document.querySelectorAll('[id^="location"]');
 
-const toggleStyle = (el) => {
-  console.log(`el: ${el}\ntarget: ${event.target}`);
-  event.target.classList.remove('showtext');
-  event.target.classList.remove('highlight');
-  event.target.addEventListener("click", function() {
-    this.classList.toggle('showtext');
-    this.classList.toggle('highlight');
-  })
+
+const hideAll = () => {
+  buttons.forEach( t => {
+    t.classList.remove('showtext');
+    t.classList.remove('highlight');
+  });
 }
 
-const highlight = (el) => {
-  el.addEventListener("click", toggleStyle)
+
+const toggleStyle = (ev) => {
+  const button = ev.target;
+  if ( !button.classList.contains('showtext') ) hideAll();
+
+  button.classList.toggle('showtext');
+  button.classList.toggle('test');
+  button.classList.toggle('highlight');
+
+  const div = ev.target.nextElementSibling;
+  div.addEventListener("click", hideAll);
 }
 
-elArray.map(highlight);
 
-
-
-
-
-// "use strict";
-
-// const [...elArray] = document.querySelectorAll('[id^="location"]');
-
-// const toggleStyle = (el) => {
-//   console.log(`el: ${el}\ntarget: ${event.target}`);
-//   event.target.classList.remove('showtext');
-//   event.target.classList.remove('highlight');
-//   event.target.addEventListener("click", function() {
-//     this.classList.toggle('showtext');
-//     this.classList.toggle('highlight');
-//   })
-// }
-
-// const highlight = (el) => {
-//   el.addEventListener("click", toggleStyle)
-// }
-
-// elArray.map(highlight);
-
-
-
+buttons.forEach( button => 
+  button.addEventListener("click", toggleStyle) 
+);
